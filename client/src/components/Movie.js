@@ -4,7 +4,7 @@ import { Link, useParams, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 const Movie = (props) => {
-    const { addToFavorites, setMovies } = props;
+    const { deleteMovie } = props;
 
     const [movie, setMovie] = useState('');
 
@@ -26,7 +26,7 @@ const Movie = (props) => {
 		e.preventDefault();
 		axios.delete(`http://localhost:5000/api/movies/${id}`)
 		.then(resp=>{
-			props.setMovies(id);
+			deleteMovie(resp.data);
             push(`/movies`)
             console.log("resp bruh", resp.data)
 		})
